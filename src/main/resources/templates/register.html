@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de nuevo usuario</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+<header>
+    <div th:replace="nav :: nav"></div>
+</header>
+<section class="flex items-center justify-center min-h-screen bg-gray-800">
+    <form  method="post" th:action="@{/home/register}" th:object="${user}" >
+        <h1 class="mb-4 p-6 text-lg font-bold leading-none tracking-tight text-gray-100 md:text-5xl lg:text-6xl text-center">
+            Registro de usuarios </h1>
+        <fieldset class="grid grid-cols-1 gap-6 p-6 items-center justify-center rounded-md shadow-sm dark:bg-gray-50">
+            <div class="space-y-2 col-span-full lg:col-span-1">
+                <p class="font-medium">Ingresa los datos del usuario</p>
+            </div>
+            <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+                <div class="col-span-full sm:col-span-3">
+                    <label for="username" class="text-sm">Nombre de usuario</label>
+                    <input id="username" name="username" type="text" placeholder="Usuario"
+                           class="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300">
+                </div>
+                <div class="col-span-full sm:col-span-3">
+                    <label for="password" class="text-sm">Contraseña</label>
+                    <input id="password" name="password" type="text" placeholder="Contraseña"
+                           class="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300">
+                </div>
+                <div class="col-span-full sm:col-span-3">
+                    <label for="firstName" class="text-sm">Nombre</label>
+                    <input id="firstName" name="firstName" type="text" placeholder="Nombre"
+                           class="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300">
+                </div>
+                <div class="col-span-full sm:col-span-3">
+                    <label for="lastName" class="text-sm">Apellido</label>
+                    <input id="lastName" name="lastName" type="text" placeholder="Apellido"
+                           class="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300">
+                </div>
+                <div class="col-span-full sm:col-span-3">
+                    <select id="id" name="id">
+                        <option value="" disabled selected>Seleccione un rol</option>
+                        <option th:each="role : ${roles}" th:value="${role.getId()}" th:text="${role.getName()}"></option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="px-8 py-3 font-semibold rounded w-1/5 dark:bg-gray-800 dark:text-gray-100">
+                Enviar
+            </button>
+        </fieldset>
+    </form>
+</section>
+</body>
+</html>
