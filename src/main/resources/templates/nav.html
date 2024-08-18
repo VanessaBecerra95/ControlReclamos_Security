@@ -8,7 +8,7 @@
         <div class="flex items-center space-x-6 rtl:space-x-reverse">
             <form id="logout-form" th:action="@{/logout}" method="post">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                <button type="submit" th:action="@{/logout}" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Logout</button>
+                <button type="submit" th:action="@{/logout}" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Logout <i class="ps-3 fa-solid fa-right-from-bracket"></i></button>
             </form>
         </div>
     </div>

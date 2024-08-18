@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class RoleServiceImpl implements RoleService{
 
-    RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
     public RoleServiceImpl(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
@@ -27,13 +27,17 @@ public class RoleServiceImpl implements RoleService{
 
     @Override
     public boolean create(Role role) {
-        Role r = roleRepository.save(role);
-        return r != null;
+        roleRepository.save(role);
+        return true;
     }
 
     @Override
     public boolean update(Role role) {
-        return roleRepository.save(role) != null;
+        if (roleRepository.existsById(role.getId())) {
+            roleRepository.save(role);
+            return true;
+        }
+        return false;
     }
 
     @Override
